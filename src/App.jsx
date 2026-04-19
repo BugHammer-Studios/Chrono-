@@ -151,7 +151,7 @@ function App() {
               sx={{ color: 'white', '&.Mui-selected': { color: 'secondary.main' } }}
             />
             <BottomNavigationAction
-              label="Especial"
+              label="Gabubus"
               icon={<SettingsIcon />}
               sx={{ color: 'white', '&.Mui-selected': { color: 'secondary.main' } }}
             />

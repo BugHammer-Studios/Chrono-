@@ -41,12 +41,3 @@ npm run build
 ```
 
 ## Funcionalidades
-
-- Cronômetro decrescente com configuração de minutos.
-- Lista de tarefas com checkboxes.
-- Aba especial com ícone destacado.
-- Loja fictícia.
-- Seleção de temas salvos localmente.
-
-- 5 abas deslizantes (use arrastar no mouse ou toque em dispositivos móveis para mudar de aba).
-- Primeira aba: Cronômetro com botões Start, Stop e Reset.cio e

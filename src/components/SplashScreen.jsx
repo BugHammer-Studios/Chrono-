@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-
+//PEDIR PRO LUIS FAZER SPLASH
 export default function SplashScreen() {
   return (
     <Box

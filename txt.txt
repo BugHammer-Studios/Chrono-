@@ -54,11 +54,11 @@ emote():
     display(emote)
  
 
+
 set self loop diagram bonguis()://catapimbas que fluxograma  interessante btw May.() 50/50 true e false se nao tiver argumento mas pode receber funções e valores 
     idle:may.(act_pool.emote, act_pool.walk),
     walk:may.(act_pool.emote, act_pool.idle),
     emote:act_pool.walk
-
 
 get normal multilinear paths omaigaaah :
     set obj main loop (wander)
