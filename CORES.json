@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Azul",
+    "primary": "#1976d2",
+    "secondary": "#dc004e"
+  },
+  {
+    "name": "Verde",
+    "primary": "#388e3c",
+    "secondary": "#f57c00"
+  },
+  {
+    "name": "Roxo",
+    "primary": "#7b1fa2",
+    "secondary": "#ff9800"
+  },
+  {
+    "name": "Rosa",
+    "primary": "#e91e63",
+    "secondary": "#2196f3"
+  },
+  {
+    "name": "Laranja",
+    "primary": "#ff5722",
+    "secondary": "#4caf50"
+  },
+  {
+    "name": "Cinza",
+    "primary": "#757575",
+    "secondary": "#9c27b0"
+  }
+]

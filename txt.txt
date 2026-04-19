@@ -1,1 +1,67 @@
+urr grego 
+var HighID
+var TreeHeatlh = gettree_heatlh()
 
+🔒😗😊😆😃😋
+😑🙁😐🤔
+
+f gettree_heatlh():
+
+
+render icons():
+for color in colors.json:
+    grid.display add color, attach func recolor(color.color)
+
+
+purchase (id):
+    if id != 1 and id > HighID:
+        HighID = id
+
+
+
+
+json struct action_pool = { [
+    idle: idle(True),
+    walk: walk(min:3,max:5,min_speed:10,max_speed:30),
+    emote: emote()
+    //OMAIGAH ENTAO ESSA È A IA DE GTA 6 QUe complexo ]
+}
+
+define json struct action_pool :: act_pool;
+
+json struct emote_pool= { 
+    SAD[ "😱","😩","😰","😭"],
+    MID["😑","🙁","😐"],
+    HAPPY["😗","😊","😆","😃","😋"]
+}
+    
+
+set non static func idle(variation => bool|| false): /// urr o may ficou meio obsoleto ja que eu acabei fazendo um fluxograma
+    if variation == true:
+        yield(self.func, "complete", (cof,emote(may.())))
+    
+//set non static func emote(roda: bool || false):
+ //   if  roda != true:
+ //       return walk()
+
+emote():
+        if TreeHeatlh >= 60:
+        emote = rnd(emote_pool.HAPPY)
+        else TreeHeatlh <= 60:
+        emote = rnd(emote_pool.MID)
+        else TreeHeatlh <= 30:
+        emote = rnd(emote_pool.SAD)
+    display(emote)
+ 
+
+set self loop diagram bonguis()://catapimbas que fluxograma  interessante btw May.() 50/50 true e false se nao tiver argumento mas pode receber funções e valores 
+    idle:may.(act_pool.emote, act_pool.walk),
+    walk:may.(act_pool.emote, act_pool.idle),
+    emote:act_pool.walk
+
+
+get normal multilinear paths omaigaaah :
+    set obj main loop (wander)
+
+_on_instance():
+    start bonguis():
