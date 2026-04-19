@@ -13,11 +13,11 @@ import { Box, Typography, Grid, Card, CardContent, CardActions, Button } from '@
 //O Tabius é o Tabius >:V
 
 const products = [
-  { id: 1, name: 'Hypom', price: 0, image: '/pets/hypom.png', description: '".. "' },
-  { id: 2, name: 'Peith', price: 3, image: '/pets/peith.png', description: '"... "' },
-  { id: 3, name: 'Enk', price: 5, image: '/pets/enk.png', description: '.' },
-  { id: 4, name: 'Phró', price: 10, image: '/pets/phro.png', description: '' },
-  { id: 5, name: 'Tabius', price: 15, image: '/pets/tabius.png', description: '....' },
+  { id: 1, name: 'Hypom', price: 0, image: 'src/components/Assets/caubica1.png', description: '".. "' },
+  { id: 2, name: 'Peith', price: 3, image: 'src/components/Assets/caubica2.png', description: '"... "' },
+  { id: 3, name: 'Enk', price: 5, image: 'src/components/Assets/caubica3.png', description: '.' },
+  { id: 4, name: 'Phró', price: 10, image: 'src/components/Assets/caubica1.png', description: '' },
+  { id: 5, name: 'Tabius', price: 15, image: 'src/components/Assets/caubica1.png', description: '....' },
 ];
 
 export default function StoreTab() {
@@ -51,7 +51,7 @@ export default function StoreTab() {
             <Grid item xs={12} sm={6} key={product.id}>
               <Card>
                 <CardContent>
-            
+
                   <Box
                     component="img"
                     src={product.image}

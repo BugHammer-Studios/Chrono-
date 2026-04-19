@@ -3,14 +3,15 @@ import { Box } from '@mui/material';
 import PetNPC from './PetNPC';
 
 const products = [
-  { id: 1, image: 'src/components/Assets/bururin.png'},
-  { id: 2, image: 'src/components/Assets/bururin.png' },
-  { id: 3, image: 'src/components/Assets/bururin.png' },
+
+  { id: 1, image: 'src/components/Assets/caubica1.png'},
+  { id: 2, image: 'src/components/Assets/caubica2.png' },
+  { id: 3, image: 'src/components/Assets/caubica3.png' },
   { id: 4, image: 'src/components/Assets/bururin.png' },
-  { id: 5, image: 'src/components/Assets/tabius.png' },
+  { id: 5, image: 'src/components/Assets/caubica1.png' },
 ];
 
-export default function TabThree() {
+export default function TabThree({theme})  {
   const [pets, setPets] = useState([]);
 
   useEffect(() => {
@@ -108,7 +109,7 @@ export default function TabThree() {
           const pet = products.find((p) => p.id === id);
           if (!pet) return null;
 
-          return <PetNPC key={id} image={pet.image} />;
+          return <PetNPC key={id} image={pet.image} theme={theme} />;
         })}
       </Box>
     </Box>

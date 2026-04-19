@@ -1,32 +1,38 @@
 [
   {
-    "name": "Azul",
-    "primary": "#1976d2",
-    "secondary": "#dc004e"
+    "name": "Azul Pastel",
+    "primary": "#A7C7E7",
+    "secondary": "#FADADD",
+    "hue": 200
   },
   {
-    "name": "Verde",
-    "primary": "#388e3c",
-    "secondary": "#f57c00"
+    "name": "Verde Pastel",
+    "primary": "#B5EAD7",
+    "secondary": "#FFDAC1",
+    "hue": 140
   },
   {
-    "name": "Roxo",
-    "primary": "#7b1fa2",
-    "secondary": "#ff9800"
+    "name": "Roxo Pastel",
+    "primary": "#C7CEEA",
+    "secondary": "#FFDAC1",
+    "hue": 260
   },
   {
-    "name": "Rosa",
-    "primary": "#e91e63",
-    "secondary": "#2196f3"
+    "name": "Rosa Pastel",
+    "primary": "#FFB7B2",
+    "secondary": "#FFDAC1",
+    "hue": 330
   },
   {
-    "name": "Laranja",
-    "primary": "#ff5722",
-    "secondary": "#4caf50"
+    "name": "Amarelo Pastel",
+    "primary": "#FFF5BA",
+    "secondary": "#C7CEEA",
+    "hue": 50
   },
   {
-    "name": "Cinza",
-    "primary": "#757575",
-    "secondary": "#9c27b0"
+    "name": "Cinza Pastel",
+    "primary": "#E2E2E2",
+    "secondary": "#C7CEEA",
+    "hue": 0
   }
 ]

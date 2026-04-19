@@ -59,17 +59,18 @@ function App() {
     localStorage.setItem('chrono_theme_index', index);
   };
 
-  const theme = createTheme({
+  const theme = createTheme({ //CHANGE THEME 
     palette: {
       primary: {
-        main: CORES[themeIndex]?.primary ?? '#1976d2',
+        main: CORES[themeIndex]?.primary ?? '#000000',
       },
       secondary: {
-        main: CORES[themeIndex]?.secondary ?? '#dc004e',
+        main: CORES[themeIndex]?.secondary ?? '#fffdfe',
       },
     },
   });
 
+  const temaAtual = CORES[themeIndex];
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -104,7 +105,7 @@ function App() {
               <TasksTab />
             </TabPanel>
             <TabPanel value={value} index={2}>
-              <TabThree />
+              <TabThree theme={temaAtual} />
             </TabPanel>
             <TabPanel value={value} index={3}>
               <StoreTab />
@@ -121,9 +122,9 @@ function App() {
             bottom: 24,
             left: '50%',
             transform: 'translateX(-50%)',
-            zIndex: 12,
+         zIndex: 12,
             width: 72,
-            height: 72,
+          height: 72,
             borderRadius: '50%',
             bgcolor: 'secondary.main',
             display: 'flex',

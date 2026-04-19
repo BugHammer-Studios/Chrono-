@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+//import {theme} from '/ThemeSettingsTab.jsx';
 
 const EMOTES = {
   HAPPY: ["😗","😊","😆","😃","😋"],
@@ -21,7 +22,9 @@ const DIRECTIONS = [
   { dx: 1, dy: -1 },  
   { dx: -1, dy: -1 }, 
 ];
-export default function PetNPC({ image, treeY }) {
+export default function PetNPC({ image, treeY, theme }) {
+    
+   console.log(theme);//DEbug
   const MAP_SIZE = 400; //PIMP USAR METODO MELHOR DEPOIS PRA NAO GERAR BUGS
   const [pos, setPos] = useState({
     x: Math.random() * (MAP_SIZE - 80),
@@ -43,6 +46,7 @@ export default function PetNPC({ image, treeY }) {
   //  FLUXIGRAMA
   useEffect(() => {
     const interval = setInterval(() => {
+        
       if (state === 'idle') {
         setState(Math.random() < 0.5 ? 'walk' : 'emote');
       } 
@@ -110,15 +114,22 @@ export default function PetNPC({ image, treeY }) {
 
       {/* PETIMG */}
       <img
-        src={image}
-        alt="pet"
-        style={{
-          width: '100%',
-          height: '100%',
-          transform: dir.dx < 0 ? 'scaleX(-1)' : 'scaleX(1)',
-          transition: 'transform 0.2s',
-        }}
-      />
+  src={image}
+  alt="pet"
+  style={{
+    width: '100%',
+    height: '100%',
+    transform: dir.dx < 0 ? 'scaleX(-1)' : 'scaleX(1)',
+    transition: 'transform 0.2s, filter 0.3s',
+
+    // FILTRO TEMA
+    filter: `
+    hue-rotate(${theme.hue || 0}deg)
+    saturate(1.5)
+    brightness(1.1)
+    `
+  }}
+/>
     </div>
   );
 }
