@@ -1,34 +1,73 @@
 ﻿import { useState, useEffect } from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import { BottomNavigation, BottomNavigationAction, Box, Paper } from '@mui/material';
+import {
+  BottomNavigation,
+  BottomNavigationAction,
+  Box,
+  Paper,
+  Modal,
+  Typography,
+  Stack,
+  Switch,
+  FormControlLabel,
+  IconButton,
+  CssBaseline
+} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { keyframes } from '@mui/system';
+
 import TimerIcon from '@mui/icons-material/Timer';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import SettingsIcon from '@mui/icons-material/Settings';
 import StorefrontIcon from '@mui/icons-material/Storefront';
-import PaletteIcon from '@mui/icons-material/Palette';
+
 import CORES from '../CORES.json';
 import StopwatchTab from './components/StopwatchTab';
 import TasksTab from './components/TasksTab';
 import TabThree from './components/TabThree';
 import StoreTab from './components/StoreTab';
-import ThemeSettingsTab from './components/ThemeSettingsTab';
-import SplashScreen from './components/SplashScreen';
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
+const pulse = keyframes`
+  0% { transform: scale(0.9); opacity: 0.6; }
+  50% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.6; }
+`;
 
+function SplashScreen() {
   return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-      style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+    <Box
+      sx={{
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        background: '#0a0a0a',
+        color: 'white',
+      }}
     >
+      <Box
+        sx={{
+          width: 80,
+          height: 80,
+          borderRadius: '50%',
+          background: 'linear-gradient(135deg, #22c55e, #06b6d4)',
+          animation: `${pulse} 1.6s infinite ease-in-out`,
+          mb: 3,
+        }}
+      />
+      <Typography variant="h6" sx={{ opacity: 0.8 }}>
+        Carregando...
+      </Typography>
+    </Box>
+  );
+}
+
+function TabPanel({ children, value, index }) {
+  return (
+    <div hidden={value !== index} style={{ height: '100%' }}>
       {value === index && (
-        <Box sx={{ p: 2, width: '100%', textAlign: 'center', height: '100%' }}>
+        <Box sx={{ p: 2, height: '100%' }}>
           {children}
         </Box>
       )}
@@ -36,15 +75,26 @@ function TabPanel(props) {
   );
 }
 
-function App() {
+export default function App() {
   const [value, setValue] = useState(0);
   const [themeIndex, setThemeIndex] = useState(0);
   const [showSplash, setShowSplash] = useState(true);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [notifications, setNotifications] = useState(false);
 
   useEffect(() => {
+    document.body.style.margin = 0;
+    document.body.style.background = '#0a0a0a';
+    document.documentElement.style.background = '#0a0a0a';
+
     const savedTheme = localStorage.getItem('chrono_theme_index');
     if (savedTheme !== null) {
       setThemeIndex(parseInt(savedTheme, 10));
+    }
+
+    const savedNotif = localStorage.getItem('chrono_notifications');
+    if (savedNotif !== null) {
+      setNotifications(savedNotif === 'true');
     }
 
     const timer = setTimeout(() => {
@@ -54,34 +104,41 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem('chrono_notifications', notifications);
+  }, [notifications]);
+
   const handleThemeSelect = (index) => {
     setThemeIndex(index);
     localStorage.setItem('chrono_theme_index', index);
   };
 
-  const theme = createTheme({ //CHANGE THEME 
+  const theme = createTheme({
     palette: {
+      mode: 'dark',
       primary: {
-        main: CORES[themeIndex]?.primary ?? '#000000',
+        main: CORES[themeIndex]?.primary ?? '#0f172a',
       },
       secondary: {
-        main: CORES[themeIndex]?.secondary ?? '#fffdfe',
+        main: CORES[themeIndex]?.secondary ?? '#22c55e',
+      },
+      background: {
+        default: '#0a0a0a',
+        paper: 'rgba(255,255,255,0.05)',
       },
     },
+    shape: {
+      borderRadius: 14,
+    },
+    typography: {
+      fontFamily: 'Inter, system-ui, sans-serif',
+    },
   });
-
-  const temaAtual = CORES[themeIndex];
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  const handleChangeIndex = (index) => {
-    setValue(index);
-  };
 
   if (showSplash) {
     return (
       <ThemeProvider theme={theme}>
+        <CssBaseline />
         <SplashScreen />
       </ThemeProvider>
     );
@@ -89,88 +146,164 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ width: '100%', height: '100vh', display: 'flex', flexDirection: 'column', bgcolor: 'background.default', color: 'text.primary' }}>
+      <CssBaseline />
+
+      <Box
+        sx={{
+          width: '100%',
+          height: '100vh',
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+          background: `
+            radial-gradient(circle at 20% 20%, ${CORES[themeIndex]?.primary}33, transparent),
+            radial-gradient(circle at 80% 80%, ${CORES[themeIndex]?.secondary}22, transparent),
+            #0a0a0a
+          `,
+        }}
+      >
+
+        <Box sx={{ position: 'fixed', top: 12, right: 12, zIndex: 20 }}>
+          <IconButton
+            onClick={() => setSettingsOpen(true)}
+            sx={{
+              backdropFilter: 'blur(10px)',
+              background: 'rgba(255,255,255,0.08)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+              color: 'white'
+            }}
+          >
+            <SettingsIcon />
+          </IconButton>
+        </Box>
+
         <Box sx={{ flexGrow: 1, overflow: 'hidden' }}>
           <SwipeableViews
             index={value}
-            onChangeIndex={handleChangeIndex}
+            onChangeIndex={setValue}
             enableMouseEvents
             style={{ height: '100%' }}
-            containerStyle={{ height: '100%' }}
           >
             <TabPanel value={value} index={0}>
               <StopwatchTab />
             </TabPanel>
+
             <TabPanel value={value} index={1}>
               <TasksTab />
             </TabPanel>
+
             <TabPanel value={value} index={2}>
-              <TabThree theme={temaAtual} />
+              <TabThree theme={CORES[themeIndex]} />
             </TabPanel>
+
             <TabPanel value={value} index={3}>
               <StoreTab />
-            </TabPanel>
-            <TabPanel value={value} index={4}>
-              <ThemeSettingsTab CORES={CORES} themeIndex={themeIndex} onSelectTheme={handleThemeSelect} />
             </TabPanel>
           </SwipeableViews>
         </Box>
 
         <Box
+          onClick={() => setValue(2)}
           sx={{
             position: 'fixed',
             bottom: 24,
             left: '50%',
             transform: 'translateX(-50%)',
-         zIndex: 12,
+            zIndex: 12,
             width: 72,
-          height: 72,
+            height: 72,
             borderRadius: '50%',
-            bgcolor: 'secondary.main',
+            background: 'linear-gradient(135deg, #22c55e, #06b6d4)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: 6,
+            boxShadow: '0 8px 30px rgba(0,0,0,0.5)',
             cursor: 'pointer',
             color: 'white',
           }}
-          onClick={() => setValue(2)}
         >
           <SettingsIcon sx={{ fontSize: 34 }} />
         </Box>
 
-        <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, bgcolor: 'primary.main' }} elevation={8}>
-          <BottomNavigation value={value} onChange={handleChange} showLabels sx={{ bgcolor: 'primary.main', minHeight: 74 }}>
-            <BottomNavigationAction
-              label="Cronômetro"
-              icon={<TimerIcon />}
-              sx={{ color: 'white', '&.Mui-selected': { color: 'secondary.main' } }}
-            />
-            <BottomNavigationAction
-              label="Tarefas"
-              icon={<CheckBoxIcon />}
-              sx={{ color: 'white', '&.Mui-selected': { color: 'secondary.main' } }}
-            />
-            <BottomNavigationAction
-              label="Gabubus"
-              icon={<SettingsIcon />}
-              sx={{ color: 'white', '&.Mui-selected': { color: 'secondary.main' } }}
-            />
-            <BottomNavigationAction
-              label="Loja"
-              icon={<StorefrontIcon />}
-              sx={{ color: 'white', '&.Mui-selected': { color: 'secondary.main' } }}
-            />
-            <BottomNavigationAction
-              label="Tema"
-              icon={<PaletteIcon />}
-              sx={{ color: 'white', '&.Mui-selected': { color: 'secondary.main' } }}
-            />
+        <Paper
+          sx={{
+            position: 'fixed',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            backdropFilter: 'blur(10px)',
+            background: 'rgba(0,0,0,0.6)',
+          }}
+          elevation={8}
+        >
+          <BottomNavigation value={value} onChange={(e, v) => setValue(v)} showLabels>
+            <BottomNavigationAction label="Cronômetro" icon={<TimerIcon />} />
+            <BottomNavigationAction label="Tarefas" icon={<CheckBoxIcon />} />
+            <BottomNavigationAction label="Gabubus" icon={<SettingsIcon />} />
+            <BottomNavigationAction label="Loja" icon={<StorefrontIcon />} />
           </BottomNavigation>
         </Paper>
+
+        <Modal open={settingsOpen} onClose={() => setSettingsOpen(false)}>
+          <Box
+            sx={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              bgcolor: 'rgba(20,20,20,0.95)',
+              borderTopLeftRadius: 20,
+              borderTopRightRadius: 20,
+              p: 3,
+              backdropFilter: 'blur(20px)',
+            }}
+          >
+            <Typography variant="h6" sx={{ mb: 2 }}>
+              Configurações
+            </Typography>
+
+            <Stack spacing={3}>
+              <Box>
+                <Typography variant="subtitle2" sx={{ mb: 1 }}>
+                  Tema
+                </Typography>
+
+                <Stack direction="row" spacing={1} flexWrap="wrap">
+                  {CORES.map((cor, index) => (
+                    <Box
+                      key={index}
+                      onClick={() => handleThemeSelect(index)}
+                      sx={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: 1.5,
+                        bgcolor: cor.primary,
+                        cursor: 'pointer',
+                        border:
+                          themeIndex === index
+                            ? '3px solid white'
+                            : '2px solid rgba(255,255,255,0.2)',
+                      }}
+                    />
+                  ))}
+                </Stack>
+              </Box>
+
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={notifications}
+                    onChange={(e) => setNotifications(e.target.checked)}
+                  />
+                }
+                label="Notificações"
+              />
+            </Stack>
+          </Box>
+        </Modal>
+
       </Box>
     </ThemeProvider>
   );
 }
-
-export default App;
