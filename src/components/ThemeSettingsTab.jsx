@@ -61,7 +61,7 @@ export default function ThemeSettingsTab({
             control={
               <Switch
                 checked={notificationsEnabled}
-                onChange={(e) => onToggleNotifications(e.target.checked)}
+                onChange={(e) => onToggleNotifications(e.target.checked)}//IMPLEMENTAR NOTIFICAÇÕES DPS
               />
             }
             label="Ativar notificações"
