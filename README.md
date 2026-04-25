@@ -1,7 +1,11 @@
 # Chrono App
-
+  App Pomodoro Com Insights 
+  
 ## Funcionalidades
- - App Pomodoro Com Insights e Gerenciador de Progresso
+ - Settar Timer
+ -  
+ - Gerenciar Progesso
+ - 
 
 ## Pré-requisitos
 
