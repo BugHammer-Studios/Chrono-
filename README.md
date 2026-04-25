@@ -1,6 +1,5 @@
 # Chrono App
-
-Um aplicativo web com 5 abas deslizantes. A primeira aba contém um cronômetro.
+App Pomodoro Com Insights e Gerenciador de Progresso
 
 ## Pré-requisitos
 
