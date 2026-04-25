@@ -1,7 +1,7 @@
 # Chrono App
 
 ## Funcionalidades
-App Pomodoro Com Insights e Gerenciador de Progresso
+ - App Pomodoro Com Insights e Gerenciador de Progresso
 
 ## Pré-requisitos
 
