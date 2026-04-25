@@ -3,9 +3,8 @@
   
 ## Funcionalidades
  - Settar Timer
- -  
- - Gerenciar Progesso
- - 
+ - Gerenciar Progresso
+
 
 ## Pré-requisitos
 
