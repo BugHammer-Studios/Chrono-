@@ -21,6 +21,8 @@ import CheckBoxIcon    from '@mui/icons-material/CheckBox';
 import SettingsIcon    from '@mui/icons-material/Settings';
 import BarChartIcon    from '@mui/icons-material/BarChart';
 
+
+
 import CORES from '../CORES.json';
 import StopwatchTab from './components/StopwatchTab';
 import TasksTab     from './components/TasksTab';
@@ -52,14 +54,11 @@ function SplashScreen() {
 
 function TabPanel({ children, value, index }) {
   return (
-    <div hidden={value !== index} style={{ height: '100%' }}>
-      {value === index && (
-        <Box sx={{ p: 2, height: '100%' }}>{children}</Box>
-      )}
+    <div style={{ height: '100%', display: value === index ? 'block' : 'none' }}>
+      <Box sx={{ p: 2, height: '100%' }}>{children}</Box>
     </div>
   );
 }
-
 export default function App() {
   const [value,         setValue]         = useState(0);
   const [themeIndex,    setThemeIndex]    = useState(0);
@@ -174,7 +173,7 @@ export default function App() {
               <ProgressTab primaryColor={CORES[themeIndex]?.secondary ?? '#22c55e'} />
             </TabPanel>
 
-            {/* 3 — ISLAND / other */}
+            {/* 3 — ISLAND ?*/}
             <TabPanel value={value} index={3}>
               <TabThree theme={CORES[themeIndex]} />
             </TabPanel>
