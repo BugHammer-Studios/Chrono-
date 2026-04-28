@@ -1,5 +1,10 @@
 # Chrono App
-App Pomodoro Com Insights e Gerenciador de Progresso
+  App Pomodoro Com Insights 
+  
+## Funcionalidades
+ - Settar Timer
+ - Gerenciar Progresso
+
 
 ## Pré-requisitos
 
@@ -39,4 +44,3 @@ Para construir o app para produção:
 npm run build
 ```
 
-## Funcionalidades
