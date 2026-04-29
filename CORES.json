@@ -1,9 +1,9 @@
 [
   {
     "name": "Azul Pastel",
-    "primary": "#A7C7E7",
-    "secondary": "#FADADD",
-    "hue": 200
+    "primary": "#FFFFFF",
+    "secondary": "#000000",
+    "hue": 0
   },
   {
     "name": "Verde Pastel",

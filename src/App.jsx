@@ -127,10 +127,8 @@ export default function App() {
       <Box sx={{
         width: '100%', height: '100vh', overflow: 'hidden',
         display: 'flex', flexDirection: 'column',
-        background: `
-          radial-gradient(circle at 20% 20%, ${CORES[themeIndex]?.primary}33, transparent),
-          radial-gradient(circle at 80% 80%, ${CORES[themeIndex]?.secondary}22, transparent),
-          #0a0a0a
+        backgroundColor: `
+          ${CORES[themeIndex]?.secondary}
         `,
       }}>
 
