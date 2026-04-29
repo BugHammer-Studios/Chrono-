@@ -188,9 +188,7 @@ export default function PomodoroTab() {
 
       {/* Header — só o título, sem ícone de config aqui */}
       <Stack direction="row" justifyContent="flex-start" alignItems="center" sx={{ width: '100%', mb: 2 }}>
-        <Typography variant="h6" sx={{ fontWeight: 700 }}>
-          Ciclo {currentCycle} / {totalCycles}
-        </Typography>
+
       </Stack>
 
       <Typography sx={{ mb: 1, color: 'secondary.main', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1 }}>
@@ -198,6 +196,8 @@ export default function PomodoroTab() {
       </Typography>
 
       {/* Ring Timer */}
+      {/* LIMP Ciclo encima do botao de config */}
+      
       <Box sx={{ position: 'relative', mb: 4 }}>
         <svg width={260} height={260} style={{ transform: 'rotate(-90deg)' }}>
           <circle cx={130} cy={130} r={R} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth={12} />
@@ -244,6 +244,9 @@ export default function PomodoroTab() {
           +10 min
         </Button>
       </Stack>
+        <Typography variant="h6" sx={{ fontWeight: 700 }}>
+          Ciclo {currentCycle} / {totalCycles}
+      </Typography>
 
       {/* Botão de Configuração — abaixo dos +5/+10 */}
       <IconButton
