@@ -1,5 +1,5 @@
 # Chrono App
-  App Pomodoro Com Insights 
+  App Pomodoro Com Tarefas e mascotes interativos
   
 ## Funcionalidades
  - Settar Timer
